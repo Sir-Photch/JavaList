@@ -1,0 +1,5 @@
+#!/bin/sh
+ARG=$@
+STR=$PWD
+cd /Users/christoph/IdeaProjects/JavaList/src/
+java JavaList "$ARG" "$STR"
