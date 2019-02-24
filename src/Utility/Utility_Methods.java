@@ -23,10 +23,20 @@ public abstract class Utility_Methods {
 
         for (String arg : args) {
             if (arg.equalsIgnoreCase("--help") || arg.equalsIgnoreCase("-help")) {
-                printWithColor(" enter File-Path ", FontColor.BLACK, BackgroundColor.CYAN);
-                return null;
-            }
-            if (arg.startsWith(System.getProperty("file.separator"))) {
+                emptyLine();
+                printWithColor(" enter File-Path starting with: " + System.getProperty("file.separator") + " ", FontColor.BLACK, BackgroundColor.CYAN);
+                printWithColor(" or leave empty if Bash-Script is configured. ", FontColor.BLACK, BackgroundColor.CYAN);
+                printWithColor(" you can find a example Bash-Script on Github. ", FontColor.BLACK, BackgroundColor.CYAN);
+                printWithColor(" type \"javalist --info\" for GitHub info. ", FontColor.BLACK, BackgroundColor.CYAN);
+                emptyLine();
+                break;
+            } else if (arg.equalsIgnoreCase("--info") || arg.equalsIgnoreCase("-info")) {
+                emptyLine();
+                printWithColor(" You can find more information about JavaList on GitHub: ", FontColor.BLACK, BackgroundColor.CYAN);
+                printWithColor(" https://github.com/Sir-Photch/JavaList ", FontColor.BLUE, BackgroundColor.BLACK);
+                emptyLine();
+                break;
+            } else if (arg.startsWith(System.getProperty("file.separator"))) {
                 path = arg;
                 break;
             }
