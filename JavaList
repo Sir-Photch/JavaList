@@ -1,5 +1,5 @@
 #!/bin/sh
 ARG=$@
 STR=$PWD
-cd /Users/christoph/IdeaProjects/JavaList/src/
+cd [INSERT PATH TO DIRECTORY WITH JavaList.class]
 java JavaList "$ARG" "$STR"
