@@ -16,3 +16,20 @@ provide a compiled version of this (for your own safety!)
 Download the /src/-path and audit/compile it yourself. 
 If you don't know what that means, google "javac"
 
+**USAGE:**
+
+Configured Bash-Script:
+```
+javalist
+```
+Not configured Bash-Script:
+```
+java /path/to/JavaList /path/to/directory/to/be/shown
+```
+you can also use Arguments:
+```
+--help --info
+```
+
+
+
