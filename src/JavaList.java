@@ -39,7 +39,7 @@ public class JavaList {
     /**
      * "Most important Method"
      * here, the sorting by type takes place
-     * TODO apps being recognized as folders and vice versa
+     * TODO apps sometimes being recognized as folders and vice versa
      *
      * @param pathIterator the provided directoryStream.iterator to iterate
      *                     over every entry in the provided directory
