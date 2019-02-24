@@ -1,0 +1,5 @@
+#!/bin/sh
+ARG=$@
+STR=$PWD
+cd [INSERT PATH TO DIRECTORY WITH JavaList.class]
+java JavaList "$ARG" "$STR"
