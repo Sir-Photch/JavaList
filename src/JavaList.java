@@ -79,32 +79,6 @@ public class JavaList {
         return sortData(sortedEntryList);
     }
 
-    private static void filterDataTypeAndAppend(String entry, Map<String, List<String>> sortedEntryList) {
-
-        if (entry.contains(".txt")) {
-            checkAdd("txt", entry, sortedEntryList);
-        } else if (entry.contains(".pdf")) {
-            checkAdd("pdf", entry, sortedEntryList);
-        } else if (entry.contains(".jpg") ||
-                entry.contains(".JPG") ||
-                entry.contains(".jpeg") ||
-                entry.contains(".HEIC")) {
-            checkAdd("pic", entry, sortedEntryList);
-        } else if (entry.contains(".app")) {
-            checkAdd("app", entry, sortedEntryList);
-        }
-
-        // Not specified Data-Types
-        else {
-            checkAdd("misc", entry, sortedEntryList);
-        }
-
-    }
-
-    private static void checkAdd(String key, String entry, Map<String, List<String>> map) {
-        map.computeIfAbsent(key, k -> new ArrayList<>()).add(entry);
-    }
-
     /**
      * Prints given Map to console, sorted by Filetype.
      *
@@ -117,43 +91,106 @@ public class JavaList {
             emptyLine();
             if (sortedFileList.containsKey("fldr") && !sortedFileList.get("fldr").isEmpty()) {
                 printInverse("___ Folders ");
-                for (String folderPath : sortedFileList.get("fldr")) {
-                    System.out.println(folderPath);
+                for (String path : sortedFileList.get("fldr")) {
+                    System.out.println(path);
                 }
                 emptyLine();
             }
-            if (sortedFileList.containsKey("txt") && !sortedFileList.get("txt").isEmpty()) {
-                printInverse("___ *.txt Files ");
-                for (String txtPath : sortedFileList.get("txt")) {
-                    printWithColor(txtPath, FontColor.BLUE, BackgroundColor.BLACK);
+            if (sortedFileList.containsKey("text") && !sortedFileList.get("text").isEmpty()) {
+                printInverse("___ TEXT Files ");
+                for (String path : sortedFileList.get("text")) {
+                    printWithColor(path, FontColor.BLUE, BackgroundColor.BLACK);
                 }
                 emptyLine();
             }
-            if (sortedFileList.containsKey("pdf") && !sortedFileList.get("pdf").isEmpty()) {
-                printInverse("___ *.pdf Files ");
-                for (String pdfPath : sortedFileList.get("pdf")) {
-                    printWithColor(pdfPath, FontColor.WHITE, BackgroundColor.RED);
+            if (sortedFileList.containsKey("data") && !sortedFileList.get("data").isEmpty()) {
+                printInverse("___ DATA Files ");
+                for (String path : sortedFileList.get("data")) {
+                    printWithColor(path, FontColor.WHITE, BackgroundColor.RED);
                 }
                 emptyLine();
             }
-            if (sortedFileList.containsKey("pic") && !sortedFileList.get("pic").isEmpty()) {
-                printInverse("___ Pictures ");
-                for (String picturePath : sortedFileList.get("pic")) {
-                    printWithColor(picturePath, FontColor.BLACK, BackgroundColor.CYAN);
+            if (sortedFileList.containsKey("audio") && !sortedFileList.get("audio").isEmpty()) {
+                printInverse("___ AUDIO Files ");
+                for (String path : sortedFileList.get("audio")) {
+                    printWithColor(path, FontColor.BLACK, BackgroundColor.CYAN);
                 }
                 emptyLine();
             }
-            if (sortedFileList.containsKey("app") && !sortedFileList.get("app").isEmpty()) {
-                printInverse("___ Applications ");
-                for (String appPath : sortedFileList.get("app")) {
-                    printWithColor(appPath, FontColor.PURPLE, BackgroundColor.BLACK);
+            if (sortedFileList.containsKey("video") && !sortedFileList.get("video").isEmpty()) {
+                printInverse("___ VIDEO Files ");
+                for (String path : sortedFileList.get("video")) {
+                    printWithColor(path, FontColor.PURPLE, BackgroundColor.BLACK);
+                }
+                emptyLine();
+            }
+            if (sortedFileList.containsKey("image") && !sortedFileList.get("image").isEmpty()) {
+                printInverse("___ IMAGE Files");
+                for (String path : sortedFileList.get("image")) {
+                    System.out.println(path);
+                }
+                emptyLine();
+            }
+            if (sortedFileList.containsKey("spreadsheet") && !sortedFileList.get("spreadsheet").isEmpty()) {
+                printInverse("___ SPREADSHEET Files");
+                for (String path : sortedFileList.get("spreadsheet")) {
+                    System.out.println(path);
+                }
+                emptyLine();
+            }
+            if (sortedFileList.containsKey("database") && !sortedFileList.get("database").isEmpty()) {
+                printInverse("___ DATABASE Files");
+                for (String path : sortedFileList.get("database")) {
+                    System.out.println(path);
+                }
+                emptyLine();
+            }
+            if (sortedFileList.containsKey("executable") && !sortedFileList.get("executable").isEmpty()) {
+                printInverse("___ EXECUTABLE Files");
+                for (String path : sortedFileList.get("executable")) {
+                    System.out.println(path);
+                }
+                emptyLine();
+            }
+            if (sortedFileList.containsKey("web") && !sortedFileList.get("web").isEmpty()) {
+                printInverse("___ WEB Files");
+                for (String path : sortedFileList.get("web")) {
+                    System.out.println(path);
+                }
+                emptyLine();
+            }
+            if (sortedFileList.containsKey("system") && !sortedFileList.get("system").isEmpty()) {
+                printInverse("___ SYSTEM Files");
+                for (String path : sortedFileList.get("system")) {
+                    System.out.println(path);
+                }
+                emptyLine();
+            }
+            if (sortedFileList.containsKey("compressed") && !sortedFileList.get("compressed").isEmpty()) {
+                printInverse("___ COMPRESSED Files");
+                for (String path : sortedFileList.get("compressed")) {
+                    System.out.println(path);
+                }
+                emptyLine();
+            }
+            if (sortedFileList.containsKey("diskimage") && !sortedFileList.get("diskimage").isEmpty()) {
+                printInverse("___ DISKIMAGE Files");
+                for (String path : sortedFileList.get("diskimage")) {
+                    System.out.println(path);
+                }
+                emptyLine();
+            }
+            if (sortedFileList.containsKey("dev") && !sortedFileList.get("dev").isEmpty()) {
+                printInverse("___ DEVELOPER Files");
+                for (String path : sortedFileList.get("dev")) {
+                    System.out.println(path);
                 }
                 emptyLine();
             }
             if (sortedFileList.containsKey("misc") && !sortedFileList.get("misc").isEmpty()) {
-                printInverse("___ Miscellaneous");
-                for (String miscPath : sortedFileList.get("misc")) {
-                    System.out.println(miscPath);
+                printInverse("___ OTHER Files");
+                for (String path : sortedFileList.get("misc")) {
+                    System.out.println(path);
                 }
                 emptyLine();
             }

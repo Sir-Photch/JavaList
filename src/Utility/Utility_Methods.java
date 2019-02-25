@@ -3,11 +3,13 @@ package Utility;
 import Utility.Colors.BackgroundColor;
 import Utility.Colors.FontColor;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import static Utility.Colors.Ansi_ColorCode.printWithColor;
+import static Utility.Utility_FileCheckers.*;
 
 /**
  * Simple Helper class with Methods that do simple stuff
@@ -45,6 +47,72 @@ public abstract class Utility_Methods {
         }
 
         return path;
+    }
+
+    /**
+     * Filters given String for data types and appends it to one of the hashed lists.
+     *
+     * @param fileString      File to process.
+     * @param sortedEntryList List (Map) for the fileString to be added to.
+     */
+    public static void filterDataTypeAndAppend(String fileString, Map<String, List<String>> sortedEntryList) {
+
+        if (isTextFile(fileString)) {
+            checkAdd("text", fileString, sortedEntryList);
+
+        } else if (isDataFile(fileString)) {
+            checkAdd("data", fileString, sortedEntryList);
+
+        } else if (isAudioFile(fileString)) {
+            checkAdd("audio", fileString, sortedEntryList);
+
+        } else if (isVideoFile(fileString)) {
+            checkAdd("video", fileString, sortedEntryList);
+
+        } else if (isImageFile(fileString)) {
+            checkAdd("image", fileString, sortedEntryList);
+
+        } else if (isSpreadsheetFile(fileString)) {
+            checkAdd("spreadsheet", fileString, sortedEntryList);
+
+        } else if (isDatabaseFile(fileString)) {
+            checkAdd("database", fileString, sortedEntryList);
+
+        } else if (isExecutable(fileString)) {
+            checkAdd("executable", fileString, sortedEntryList);
+
+        } else if (isWebFile(fileString)) {
+            checkAdd("web", fileString, sortedEntryList);
+
+        } else if (isSystemFile(fileString)) {
+            checkAdd("system", fileString, sortedEntryList);
+
+        } else if (isCompressedFile(fileString)) {
+            checkAdd("compressed", fileString, sortedEntryList);
+
+        } else if (isDiskImageFile(fileString)) {
+            checkAdd("diskimage", fileString, sortedEntryList);
+
+        } else if (isDeveloperFile(fileString)) {
+            checkAdd("dev", fileString, sortedEntryList);
+
+        }
+        // Not specified Data-Types
+        else {
+            checkAdd("misc", fileString, sortedEntryList);
+        }
+
+    }
+
+    /**
+     * Helper-method to be used with {@code filterDataTypeAndAppend()}, in order to prevent code clutter.
+     *
+     * @param key   key for the {@code entry} to be saved at.
+     * @param entry fileString to be saved.
+     * @param map   List (Map) for everything to be saved to.
+     */
+    private static void checkAdd(String key, String entry, Map<String, List<String>> map) {
+        map.computeIfAbsent(key, k -> new ArrayList<>()).add(entry);
     }
 
     /**
