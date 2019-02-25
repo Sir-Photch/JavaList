@@ -36,7 +36,6 @@ public class JavaList {
     /**
      * "Most important Method"
      * here, the sorting by type takes place
-     * TODO apps sometimes being recognized as folders and vice versa
      *
      * @param pathIterator the provided directoryStream.iterator to iterate
      *                     over every entry in the provided directory
@@ -127,35 +126,35 @@ public class JavaList {
             if (sortedFileList.containsKey("image") && !sortedFileList.get("image").isEmpty()) {
                 printInverse("___ IMAGE Files");
                 for (String path : sortedFileList.get("image")) {
-                    System.out.println(path);
+                    printWithColor(path, FontColor.YELLOW, BackgroundColor.BLACK);
                 }
                 emptyLine();
             }
             if (sortedFileList.containsKey("spreadsheet") && !sortedFileList.get("spreadsheet").isEmpty()) {
                 printInverse("___ SPREADSHEET Files");
                 for (String path : sortedFileList.get("spreadsheet")) {
-                    System.out.println(path);
+                    printWithColor(path, FontColor.BLACK, BackgroundColor.GREEN);
                 }
                 emptyLine();
             }
             if (sortedFileList.containsKey("database") && !sortedFileList.get("database").isEmpty()) {
                 printInverse("___ DATABASE Files");
                 for (String path : sortedFileList.get("database")) {
-                    System.out.println(path);
+                    printWithColor(path, FontColor.WHITE, BackgroundColor.RED);
                 }
                 emptyLine();
             }
             if (sortedFileList.containsKey("executable") && !sortedFileList.get("executable").isEmpty()) {
                 printInverse("___ EXECUTABLE Files");
                 for (String path : sortedFileList.get("executable")) {
-                    System.out.println(path);
+                    printWithColor(path, FontColor.BLACK, BackgroundColor.WHITE);
                 }
                 emptyLine();
             }
             if (sortedFileList.containsKey("web") && !sortedFileList.get("web").isEmpty()) {
                 printInverse("___ WEB Files");
                 for (String path : sortedFileList.get("web")) {
-                    System.out.println(path);
+                    printWithColor(path, FontColor.BLACK, BackgroundColor.YELLOW);
                 }
                 emptyLine();
             }
