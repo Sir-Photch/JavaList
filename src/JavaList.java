@@ -6,10 +6,7 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static Utility.Colors.Ansi_ColorCode.printInverse;
 import static Utility.Colors.Ansi_ColorCode.printWithColor;
@@ -64,33 +61,48 @@ public class JavaList {
             else fileList.add(shortPathString);
         }
 
-        // create predefined Hash-Structure by files/folders (PDF, TXT, ...)
-        Map<String, List<String>> sortedEntryList = createDataTypeHashMap();
+        // create predefined Hash-Structure for Lists to be stored in divided by filetype
+        Map<String, List<String>> sortedEntryList = new HashMap<>();
 
-        // add Folders, if present
+        // add all Folders, if present
         if (!folderList.isEmpty())
-            sortedEntryList.get("fldr").addAll(folderList);
+            sortedEntryList.computeIfAbsent("fldr", k -> new ArrayList<>()).addAll(folderList);
 
         // add Files sorted by File-Type, if present
         Iterator<String> e = fileList.iterator();
         while (e.hasNext()) {
             String entry = e.next();
-            if (entry.contains(".txt")) sortedEntryList.get("txt").add(entry);
-            else if (entry.contains(".pdf")) sortedEntryList.get("pdf").add(entry);
-            else if (entry.contains(".jpg") ||
-                    entry.contains(".JPG") ||
-                    entry.contains(".jpeg") ||
-                    entry.contains(".HEIC")) sortedEntryList.get("pic").add(entry);
-            else if (entry.contains(".app")) sortedEntryList.get("app").add(entry);
-
-                // Not specified Data-Types
-            else sortedEntryList.get("misc").add(entry);
-
-            // Remove entry to prevent double entries
-            e.remove();
+            filterDataTypeAndAppend(entry, sortedEntryList);
+            e.remove(); // Remove entry to prevent double entries
         }
 
         return sortData(sortedEntryList);
+    }
+
+    private static void filterDataTypeAndAppend(String entry, Map<String, List<String>> sortedEntryList) {
+
+        if (entry.contains(".txt")) {
+            checkAdd("txt", entry, sortedEntryList);
+        } else if (entry.contains(".pdf")) {
+            checkAdd("pdf", entry, sortedEntryList);
+        } else if (entry.contains(".jpg") ||
+                entry.contains(".JPG") ||
+                entry.contains(".jpeg") ||
+                entry.contains(".HEIC")) {
+            checkAdd("pic", entry, sortedEntryList);
+        } else if (entry.contains(".app")) {
+            checkAdd("app", entry, sortedEntryList);
+        }
+
+        // Not specified Data-Types
+        else {
+            checkAdd("misc", entry, sortedEntryList);
+        }
+
+    }
+
+    private static void checkAdd(String key, String entry, Map<String, List<String>> map) {
+        map.computeIfAbsent(key, k -> new ArrayList<>()).add(entry);
     }
 
     /**
@@ -103,42 +115,42 @@ public class JavaList {
         if (sortedFileList != null) {
 
             emptyLine();
-            if (!sortedFileList.get("fldr").isEmpty()) {
+            if (sortedFileList.containsKey("fldr") && !sortedFileList.get("fldr").isEmpty()) {
                 printInverse("___ Folders ");
                 for (String folderPath : sortedFileList.get("fldr")) {
                     System.out.println(folderPath);
                 }
                 emptyLine();
             }
-            if (!sortedFileList.get("txt").isEmpty()) {
+            if (sortedFileList.containsKey("txt") && !sortedFileList.get("txt").isEmpty()) {
                 printInverse("___ *.txt Files ");
                 for (String txtPath : sortedFileList.get("txt")) {
                     printWithColor(txtPath, FontColor.BLUE, BackgroundColor.BLACK);
                 }
                 emptyLine();
             }
-            if (!sortedFileList.get("pdf").isEmpty()) {
+            if (sortedFileList.containsKey("pdf") && !sortedFileList.get("pdf").isEmpty()) {
                 printInverse("___ *.pdf Files ");
                 for (String pdfPath : sortedFileList.get("pdf")) {
                     printWithColor(pdfPath, FontColor.WHITE, BackgroundColor.RED);
                 }
                 emptyLine();
             }
-            if (!sortedFileList.get("pic").isEmpty()) {
+            if (sortedFileList.containsKey("pic") && !sortedFileList.get("pic").isEmpty()) {
                 printInverse("___ Pictures ");
                 for (String picturePath : sortedFileList.get("pic")) {
                     printWithColor(picturePath, FontColor.BLACK, BackgroundColor.CYAN);
                 }
                 emptyLine();
             }
-            if (!sortedFileList.get("app").isEmpty()) {
+            if (sortedFileList.containsKey("app") && !sortedFileList.get("app").isEmpty()) {
                 printInverse("___ Applications ");
                 for (String appPath : sortedFileList.get("app")) {
                     printWithColor(appPath, FontColor.PURPLE, BackgroundColor.BLACK);
                 }
                 emptyLine();
             }
-            if (!sortedFileList.get("misc").isEmpty()) {
+            if (sortedFileList.containsKey("misc") && !sortedFileList.get("misc").isEmpty()) {
                 printInverse("___ Miscellaneous");
                 for (String miscPath : sortedFileList.get("misc")) {
                     System.out.println(miscPath);

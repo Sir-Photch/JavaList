@@ -3,7 +3,9 @@ package Utility;
 import Utility.Colors.BackgroundColor;
 import Utility.Colors.FontColor;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 import static Utility.Colors.Ansi_ColorCode.printWithColor;
 
@@ -43,22 +45,6 @@ public abstract class Utility_Methods {
         }
 
         return path;
-    }
-
-    /**
-     * Helper method to create a HashMap that retains all data-types to be sorted
-     *
-     * @return returns the newly created Hashmap.
-     */
-    public static Map<String, List<String>> createDataTypeHashMap() {
-        Map<String, List<String>> map = new HashMap<>();
-        map.put("fldr", new ArrayList<>());
-        map.put("txt", new ArrayList<>());
-        map.put("pdf", new ArrayList<>());
-        map.put("pic", new ArrayList<>());
-        map.put("app", new ArrayList<>());
-        map.put("misc", new ArrayList<>());
-        return map;
     }
 
     /**
