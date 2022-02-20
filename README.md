@@ -1,5 +1,5 @@
 # JavaList
-Java alternative to (ugly) ls-command on MacOS, and Linux
+Java alternative to ls-command on MacOS, and Linux
 
 This was intentionally meant to help me with my Java skills, but I liked the idea of customizing my own kind of "Finder"
 Its purpose is to make a less oldschool version of ls, with sorting by filetype and colors!
@@ -9,8 +9,6 @@ one way is to create a bash-script and place it in your /usr/local/bin folder (M
 I'll provide one here on Github. (see the JavaList file with no extension here on this Repository)
 
 This is currently implemented for MacOS, and sucessfully tested on Raspbian and Kubuntu.
-
-Clone this Repository and audit/compile it yourself. 
 
 **USAGE:**
 
